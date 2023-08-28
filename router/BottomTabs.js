@@ -1,14 +1,128 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Login from "../page/Login";
-import Screen2 from "../page/Screen2";
+import Home from "../page/Home/index";
+import Contatos from "../page/Contatos/index";
+import Search from "../page/Search/index";
+import Interesses from "../page/Interesses/index";
+import { Entypo } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import Header from "../components/Header";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Login" component={Login} />
-      <Tab.Screen name="Screen2" component={Screen2} />
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {
+          shadowColor: "transparent",
+          shadowOpacity: 0,
+          elevation: 0,
+        },
+        tabBarStyle: { height: 65 },
+        tabBarActiveTintColor: "#1A1A1A",
+        tabBarLabelStyle: {
+          paddingBottom: 5,
+          fontFamily: "MontserratRegular",
+          fontSize: 11,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Novidades"
+        component={Home}
+        options={{
+          headerTitle: () => <Header name="Novidades"></Header>,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                backgroundColor: focused ? "#8178FF" : "#EDECFF",
+                paddingHorizontal: 20,
+                paddingVertical: 5,
+                borderRadius: 25,
+              }}
+            >
+              <Entypo
+                name="home"
+                size={20}
+                color={focused ? "white" : "#8178FF"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Contatos"
+        component={Contatos}
+        options={{
+          headerTitle: (props) => <Header name="Contatos"></Header>,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                backgroundColor: focused ? "#8178FF" : "#EDECFF",
+                paddingHorizontal: 20,
+                paddingVertical: 5,
+                borderRadius: 25,
+              }}
+            >
+              <MaterialIcons
+                name="supervisor-account"
+                size={24}
+                color={focused ? "white" : "#8178FF"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Buscar"
+        component={Search}
+        options={{
+          headerTitle: (props) => <Header name="Buscar"></Header>,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                backgroundColor: focused ? "#8178FF" : "#EDECFF",
+                paddingHorizontal: 20,
+                paddingVertical: 5,
+                borderRadius: 25,
+              }}
+            >
+              <Ionicons
+                name="search-sharp"
+                size={24}
+                color={focused ? "white" : "#8178FF"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Interesses"
+        component={Interesses}
+        options={{
+          headerTitle: (props) => <Header name="Interesses"></Header>,
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                backgroundColor: focused ? "#8178FF" : "#EDECFF",
+                paddingHorizontal: 20,
+                paddingVertical: 5,
+                borderRadius: 25,
+              }}
+            >
+              <MaterialIcons
+                name="loop"
+                size={24}
+                color={focused ? "white" : "#8178FF"}
+              />
+            </View>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
