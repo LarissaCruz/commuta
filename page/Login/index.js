@@ -1,58 +1,76 @@
 import React from "react";
+import { Image } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import { List } from "react-native-paper";
 
-function Login() {
+function Login({ navigation }) {
   const [text, setText] = React.useState("");
+  const [isFocused, setIsFocused] = React.useState(false);
   return (
     <View style={styles.container}>
-      <TextInput mode="outlined" placeholder="Type something" />
-      <List.AccordionGroup>
-        <List.Accordion
-          title="Accordion 1"
-          id="1"
-          style={{
-            borderColor: "black",
-            borderWidth: 0.5,
+      <View style={styles.containerLogo}>
+        <Image source={require("../../assets/logo.png")}></Image>
+      </View>
+      <Text style={styles.titulo}>Boas Vindas!</Text>
+      <Text style={styles.label}>
+        Com o Commuta fazer permuta nunca foi tão fácil!
+      </Text>
+      <TextInput
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        theme={{
+          colors: {
+            outline: "#808080",
+            primary: isFocused ? "#4B3EFF" : "#808080", // Cor da borda quando focado e não focado
+            underlineColor: "transparent", // Remove a linha de baixo
+          },
 
-            paddingVertical: 0,
-            borderTopRadius: 5,
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "white",
-              shadowColor: "#000000",
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              shadowOffset: {
-                height: 1,
-                width: 1,
-              },
-              elevation: 5,
-            }}
-          >
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-          </View>
-        </List.Accordion>
-        <TextInput mode="outlined" placeholder="Type something" />
-        <List.Accordion title="Accordion 2" id="2">
-          <List.Item title="Item 2" />
-        </List.Accordion>
-        <View>
-          <Text>
-            List.Accordion can be wrapped because implementation uses
-            React.Context.
-          </Text>
-          <List.Accordion title="Accordion 3" id="3">
-            <List.Item title="Item 3" />
-          </List.Accordion>
-        </View>
-      </List.AccordionGroup>
+          roundness: 10,
+        }}
+        placeholderTextColor="#808080"
+        style={styles.input}
+        mode="outlined"
+        placeholder="Email"
+        left={<TextInput.Icon icon="email" color={"#333"} />}
+      />
+
+      <TextInput
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        theme={{
+          colors: {
+            outline: "#808080",
+            primary: isFocused ? "#4B3EFF" : "#808080", // Cor da borda quando focado e não focado
+            underlineColor: "transparent", // Remove a linha de baixo
+          },
+
+          roundness: 10,
+        }}
+        placeholderTextColor="#808080"
+        style={styles.input}
+        mode="outlined"
+        placeholder="Senha"
+        right={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
+        left={<TextInput.Icon icon="lock" color={"#333"} />}
+      />
+      <Text style={[styles.label, styles.link]}>Esqueci minha senha</Text>
+      <TouchableOpacity
+        style={[styles.button, { marginTop: 5 }]}
+        onPress={() => navigation.navigate("Home")}
+      >
+        <Text style={[styles.labelButton]}>Entrar</Text>
+      </TouchableOpacity>
+      <Text style={[styles.texto]}>ou</Text>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "white" }]}
+        onPress={() => navigation.navigate("Cadastro")}
+      >
+        <Text style={[styles.labelButton, { color: "#4B3EFF" }]}>
+          Cadastre-se
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -60,7 +78,56 @@ function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
+    backgroundColor: "white",
+  },
+  containerLogo: {
+    flex: 1 / 1.1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 56,
+  },
+  titulo: {
+    fontFamily: "MontserratMedium",
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  label: {
+    fontFamily: "MontserratRegular",
+    fontSize: 16,
+    marginBottom: 28,
+  },
+  labelButton: {
+    fontFamily: "MontserratMedium",
+    fontSize: 18,
+    color: "white",
+  },
+  input: {
+    backgroundColor: "white",
+    fontFamily: "MontserratRegular",
+    lineHeight: 24,
+    marginBottom: 28,
+  },
+  link: {
+    color: "#8178FF",
+    textDecorationLine: "underline",
+    textAlign: "right",
+  },
+  button: {
+    flexDirection: "row",
+    backgroundColor: "#4B3EFF",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    gap: 8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  texto: {
+    fontFamily: "MontserratBold",
+    fontSize: 16,
+    textAlign: "center",
+    marginVertical: 16,
   },
 });
 

@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+
 import AppTabs from "./router/BottomTabs";
+import AuthRouter from "./router/AuthRouter";
 export default function App() {
   let [fontsLoaded] = useFonts({
     MontserratBold: require("./assets/fontes/Montserrat-Bold.ttf"),
@@ -13,7 +14,12 @@ export default function App() {
   if (!!fontsLoaded) {
     return (
       <NavigationContainer>
-        <AppTabs />
+        <StatusBar
+          backgroundColor="#ffff" // Cor de fundo da barra de status
+          barStyle="light-content" // Estilo do texto (light ou dark)
+          translucent={true} // Tornar a barra de status transparente
+        />
+        <AuthRouter />
       </NavigationContainer>
     );
   }
