@@ -14,7 +14,7 @@ function CardHeader() {
       <View style={{ alignItems: "center" }}>
         <Image
           source={require("../../assets/ads.png")}
-          style={{ height: 24 }}
+          style={{ width: 111, height: 34 }}
         />
       </View>
     </View>

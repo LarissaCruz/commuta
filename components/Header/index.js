@@ -7,7 +7,11 @@ function Header({ name }) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{name}</Text>
-      <Avatar.Image size={40} source={require("../../assets/avatar.png")} />
+      <View
+        style={{ borderWidth: 2, borderColor: "#4B3EFF", borderRadius: 50 }}
+      >
+        <Avatar.Image size={40} source={require("../../assets/avatar.png")} />
+      </View>
     </View>
   );
 }

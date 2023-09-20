@@ -2,10 +2,18 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 
-function Input({ placeholderName, iconRight, iconLeft, stylesInput }) {
+function Input({
+  placeholderName,
+  onChangeText,
+  iconRight,
+  iconLeft,
+  stylesInput,
+  value,
+}) {
   const [isFocused, setIsFocused] = React.useState(false);
   return (
     <TextInput
+      value={value}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       theme={{
@@ -30,6 +38,7 @@ function Input({ placeholderName, iconRight, iconLeft, stylesInput }) {
       placeholder={placeholderName}
       right={iconRight}
       left={iconLeft}
+      onChangeText={onChangeText}
     />
   );
 }

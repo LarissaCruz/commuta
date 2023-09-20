@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { ProgressBar } from "react-native-paper";
 import Input from "../../../components/Input";
 import { TextInput } from "react-native-paper";
+import { AntDesign } from "@expo/vector-icons";
 
 function Etapa4({ navigation }) {
   return (
@@ -55,9 +56,11 @@ function Etapa4({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button]}
-            onPress={() => navigation.navigate("Etapa4")}
+            onPress={() => navigation.navigate("ConfirmEmail")}
           >
             <Text style={[styles.labelButton]}>Concluir</Text>
+
+            <AntDesign name="check" size={20} color="white" />
           </TouchableOpacity>
         </View>
         <Text style={styles.smallLabel}>

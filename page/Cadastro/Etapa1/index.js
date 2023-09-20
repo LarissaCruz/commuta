@@ -2,12 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, TouchableOpacity } from "react-native";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import {
-  ProgressBar,
-  MD3Colors,
-  Tooltip,
-  IconButton,
-} from "react-native-paper";
+import { ProgressBar } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import Input from "../../../components/Input";
 import { Checkbox } from "react-native-paper";

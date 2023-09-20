@@ -6,8 +6,11 @@ import { Chip } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
 function Etapa3({ navigation }) {
   const [expandedAccordion, setExpandedAccordion] = React.useState(null);
-  const [estado, setEstado] = React.useState(["Ba"]);
-  const [cidades, setCidade] = React.useState(["eunapolis"]);
+  const [estadoSelecionado, setEstadoSelecionado] = React.useState("");
+  const [colecaoEstados, setColecaoEstados] = React.useState(["Ba"]);
+  const [cidadeSelecionada, setCidadeSelecionada] = React.useState("");
+  const [colecaoCidades, setColecaoCidades] = React.useState(["eunapolis"]);
+
   const handleAccordionPress = (accordionId) => {
     setExpandedAccordion(
       expandedAccordion === accordionId ? null : accordionId
@@ -16,6 +19,29 @@ function Etapa3({ navigation }) {
 
   const isAccordionExpanded = (accordionId) => {
     return expandedAccordion === accordionId;
+  };
+
+  const handleChangeEstado = (text) => {
+    setEstadoSelecionado(text);
+  };
+
+  const handleChangeCidade = (text) => {
+    setCidadeSelecionada(text);
+  };
+
+  const handleRemoverItem = (item, setColecao) => {
+    const novaColecao = setColecao.filter((elemento) => elemento !== item);
+    setColecao(novaColecao);
+  };
+
+  const handleChangeColecaoEstado = () => {
+    setColecaoEstados([...colecaoEstados, estadoSelecionado]);
+    setEstadoSelecionado("");
+  };
+
+  const handleChangeColecaoCidade = () => {
+    setColecaoCidades([...colecaoCidades, cidadeSelecionada]);
+    setCidadeSelecionada("");
   };
   return (
     <View style={styles.container}>
@@ -31,40 +57,65 @@ function Etapa3({ navigation }) {
       </View>
       <Input
         placeholderName={"Estado"}
+        value={estadoSelecionado}
+        onChangeText={handleChangeEstado}
         iconRight={
           <TextInput.Icon
-            onPress={() => console.log("teste")}
+            onPress={() => handleChangeColecaoEstado()}
             icon="plus"
             color={"#4B3EFF"}
           />
         }
       ></Input>
-      {estado &&
-        estado.map((item, index) => {
-          return (
-            <View style={{ flexDirection: "row", marginBottom: 10 }}>
-              <View style={styles.chip}>
-                <Text style={styles.smalLabel}>item</Text>
-                <AntDesign name="close" size={15} color="#4B3EFF" />
+      <View
+        style={{
+          flexDirection: "row",
+          marginBottom: 10,
+          gap: 8,
+          flexWrap: "wrap",
+        }}
+      >
+        {colecaoEstados &&
+          colecaoEstados?.map((item, index) => {
+            return (
+              <View style={[styles.chip]} key={index}>
+                <Text style={styles.smalLabel}>{item}</Text>
+                <TouchableOpacity
+                  onPress={() => handleRemoverItem(item, setColecaoEstados)}
+                >
+                  <AntDesign name="close" size={15} color="#4B3EFF" />
+                </TouchableOpacity>
               </View>
-            </View>
-          );
-        })}
+            );
+          })}
+      </View>
       <Input
+        value={cidadeSelecionada}
+        onChangeText={handleChangeCidade}
         placeholderName={"Cidade"}
-        iconRight={<TextInput.Icon icon="plus" color={"#4B3EFF"} />}
+        iconRight={
+          <TextInput.Icon
+            icon="plus"
+            color={"#4B3EFF"}
+            onPress={() => handleChangeColecaoCidade()}
+          />
+        }
       ></Input>
-      {cidades &&
-        cidades.map((item, index) => {
-          return (
-            <View style={{ flexDirection: "row", marginBottom: 10 }}>
-              <View style={styles.chip}>
-                <Text style={styles.smalLabel}>item</Text>
-                <AntDesign name="close" size={15} color="#4B3EFF" />
+      <View style={{ flexDirection: "row", marginBottom: 10, gap: 8 }}>
+        {colecaoCidades &&
+          colecaoCidades?.map((item, index) => {
+            return (
+              <View style={styles.chip} key={index}>
+                <Text style={styles.smalLabel}>{item}</Text>
+                <TouchableOpacity
+                  onPress={() => handleRemoverItem(item, setColecaoCidades)}
+                >
+                  <AntDesign name="close" size={15} color="#4B3EFF" />
+                </TouchableOpacity>
               </View>
-            </View>
-          );
-        })}
+            );
+          })}
+      </View>
       <List.Accordion
         expanded={isAccordionExpanded("1")}
         onPress={() => handleAccordionPress("1")}

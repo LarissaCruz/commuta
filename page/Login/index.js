@@ -1,73 +1,80 @@
-import React from "react";
-import { Image } from "react-native";
-import { TouchableOpacity } from "react-native";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
-import { List } from "react-native-paper";
 
-function Login({ navigation }) {
-  const [text, setText] = React.useState("");
-  const [isFocused, setIsFocused] = React.useState(false);
+function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [password, setPassword] = useState("");
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
+  const handleEmailFocus = () => setIsEmailFocused(true);
+  const handleEmailBlur = () => setIsEmailFocused(false);
+  const handlePasswordFocus = () => setIsPasswordFocused(true);
+  const handlePasswordBlur = () => setIsPasswordFocused(false);
+
   return (
     <View style={styles.container}>
-      <View style={styles.containerLogo}>
-        <Image source={require("../../assets/logo.png")}></Image>
+      <View style={styles.logoContainer}>
+        <Image source={require("../../assets/logo.png")} />
       </View>
-      <Text style={styles.titulo}>Boas Vindas!</Text>
-      <Text style={styles.label}>
+      <Text style={styles.title}>Boas Vindas!</Text>
+      <Text style={styles.description}>
         Com o Commuta fazer permuta nunca foi tão fácil!
       </Text>
       <TextInput
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={handleEmailFocus}
+        onBlur={handleEmailBlur}
         theme={{
           colors: {
             outline: "#808080",
-            primary: isFocused ? "#4B3EFF" : "#808080", // Cor da borda quando focado e não focado
-            underlineColor: "transparent", // Remove a linha de baixo
+            primary: isEmailFocused ? "#4B3EFF" : "#808080",
+            underlineColor: "transparent",
           },
-
           roundness: 10,
         }}
         placeholderTextColor="#808080"
         style={styles.input}
         mode="outlined"
         placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
         left={<TextInput.Icon icon="email" color={"#333"} />}
       />
-
       <TextInput
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onFocus={handlePasswordFocus}
+        onBlur={handlePasswordBlur}
         theme={{
           colors: {
             outline: "#808080",
-            primary: isFocused ? "#4B3EFF" : "#808080", // Cor da borda quando focado e não focado
-            underlineColor: "transparent", // Remove a linha de baixo
+            primary: isPasswordFocused ? "#4B3EFF" : "#808080",
+            underlineColor: "transparent",
           },
-
           roundness: 10,
         }}
         placeholderTextColor="#808080"
         style={styles.input}
         mode="outlined"
         placeholder="Senha"
+        value={password}
+        onChangeText={setPassword}
         right={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
         left={<TextInput.Icon icon="lock" color={"#333"} />}
+        secureTextEntry
       />
-      <Text style={[styles.label, styles.link]}>Esqueci minha senha</Text>
+      <Text style={[styles.description, styles.link]}>Esqueci minha senha</Text>
       <TouchableOpacity
-        style={[styles.button, { marginTop: 5 }]}
+        style={[styles.button, styles.primaryButton]}
         onPress={() => navigation.navigate("Home")}
       >
-        <Text style={[styles.labelButton]}>Entrar</Text>
+        <Text style={[styles.buttonText]}>Entrar</Text>
       </TouchableOpacity>
-      <Text style={[styles.texto]}>ou</Text>
+      <Text style={styles.orText}>ou</Text>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor: "white" }]}
+        style={[styles.button, styles.secondaryButton]}
         onPress={() => navigation.navigate("Cadastro")}
       >
-        <Text style={[styles.labelButton, { color: "#4B3EFF" }]}>
+        <Text style={[styles.buttonText, styles.secondaryButtonText]}>
           Cadastre-se
         </Text>
       </TouchableOpacity>
@@ -81,31 +88,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: "white",
   },
-  containerLogo: {
+  logoContainer: {
     flex: 1 / 1.1,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 56,
   },
-  titulo: {
+  title: {
     fontFamily: "MontserratMedium",
     fontSize: 20,
     marginBottom: 10,
   },
-  label: {
+  description: {
     fontFamily: "MontserratRegular",
     fontSize: 16,
-    marginBottom: 28,
-  },
-  labelButton: {
-    fontFamily: "MontserratMedium",
-    fontSize: 18,
-    color: "white",
-  },
-  input: {
-    backgroundColor: "white",
-    fontFamily: "MontserratRegular",
-    lineHeight: 24,
     marginBottom: 28,
   },
   link: {
@@ -113,17 +109,37 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     textAlign: "right",
   },
+  input: {
+    backgroundColor: "white",
+    fontFamily: "MontserratRegular",
+    lineHeight: 24,
+    marginBottom: 28,
+  },
   button: {
     flexDirection: "row",
-    backgroundColor: "#4B3EFF",
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 12,
     gap: 8,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 5,
   },
-  texto: {
+  primaryButton: {
+    backgroundColor: "#4B3EFF",
+  },
+  secondaryButton: {
+    backgroundColor: "white",
+  },
+  buttonText: {
+    fontFamily: "MontserratMedium",
+    fontSize: 18,
+    color: "white",
+  },
+  secondaryButtonText: {
+    color: "#4B3EFF",
+  },
+  orText: {
     fontFamily: "MontserratBold",
     fontSize: 16,
     textAlign: "center",
@@ -131,4 +147,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginScreen;

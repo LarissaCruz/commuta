@@ -5,6 +5,7 @@ import Etapa2 from "../page/Cadastro/Etapa2";
 import Etapa3 from "../page/Cadastro/Etapa3";
 import Etapa4 from "../page/Cadastro/Etapa4";
 import BottomTabs from "./BottomTabs";
+import ConfirmEmailScreen from "../page/Cadastro/ConfirmEmailScreen";
 const Stack = createStackNavigator();
 
 export default function AuthRouter() {
@@ -41,6 +42,13 @@ export default function AuthRouter() {
       <Stack.Screen
         name="Etapa4"
         component={Etapa4}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ConfirmEmail"
+        component={ConfirmEmailScreen}
         options={{
           headerShown: false,
         }}
