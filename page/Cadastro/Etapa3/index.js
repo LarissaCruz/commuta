@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { List, ProgressBar, TextInput } from "react-native-paper";
 import Input from "../../../components/Input";
 import { Chip } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
-function Etapa3({ navigation }) {
-  const [expandedAccordion, setExpandedAccordion] = React.useState(null);
-  const [estadoSelecionado, setEstadoSelecionado] = React.useState("");
-  const [colecaoEstados, setColecaoEstados] = React.useState(["Ba"]);
-  const [cidadeSelecionada, setCidadeSelecionada] = React.useState("");
-  const [colecaoCidades, setColecaoCidades] = React.useState(["eunapolis"]);
+import styles from "./styles";
+
+const Etapa3 = ({ navigation }) => {
+  const [expandedAccordion, setExpandedAccordion] = useState(null);
+  const [estadoSelecionado, setEstadoSelecionado] = useState("");
+  const [colecaoEstados, setColecaoEstados] = useState(["Ba"]);
+  const [cidadeSelecionada, setCidadeSelecionada] = useState("");
+  const [colecaoCidades, setColecaoCidades] = useState(["eunapolis"]);
 
   const handleAccordionPress = (accordionId) => {
     setExpandedAccordion(
@@ -29,8 +31,8 @@ function Etapa3({ navigation }) {
     setCidadeSelecionada(text);
   };
 
-  const handleRemoverItem = (item, setColecao) => {
-    const novaColecao = setColecao.filter((elemento) => elemento !== item);
+  const handleRemoverItem = (item, colecao, setColecao) => {
+    const novaColecao = colecao.filter((elemento) => elemento !== item);
     setColecao(novaColecao);
   };
 
@@ -43,6 +45,7 @@ function Etapa3({ navigation }) {
     setColecaoCidades([...colecaoCidades, cidadeSelecionada]);
     setCidadeSelecionada("");
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
@@ -81,7 +84,9 @@ function Etapa3({ navigation }) {
               <View style={[styles.chip]} key={index}>
                 <Text style={styles.smalLabel}>{item}</Text>
                 <TouchableOpacity
-                  onPress={() => handleRemoverItem(item, setColecaoEstados)}
+                  onPress={() =>
+                    handleRemoverItem(item, colecaoEstados, setColecaoEstados)
+                  }
                 >
                   <AntDesign name="close" size={15} color="#4B3EFF" />
                 </TouchableOpacity>
@@ -108,7 +113,9 @@ function Etapa3({ navigation }) {
               <View style={styles.chip} key={index}>
                 <Text style={styles.smalLabel}>{item}</Text>
                 <TouchableOpacity
-                  onPress={() => handleRemoverItem(item, setColecaoCidades)}
+                  onPress={() =>
+                    handleRemoverItem(item, colecaoCidades, setColecaoCidades)
+                  }
                 >
                   <AntDesign name="close" size={15} color="#4B3EFF" />
                 </TouchableOpacity>
@@ -186,61 +193,6 @@ function Etapa3({ navigation }) {
       </View>
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-    backgroundColor: "#FCFCFC",
-  },
-  navbar: {
-    paddingTop: 40,
-    paddingBottom: 18,
-  },
-  titulo: {
-    fontFamily: "MontserratMedium",
-    fontSize: 20,
-    textAlign: "center",
-  },
-  label: {
-    fontFamily: "MontserratRegular",
-    fontSize: 16,
-    marginBottom: 28,
-  },
-  labelButton: {
-    fontFamily: "MontserratMedium",
-    fontSize: 16,
-    color: "white",
-  },
-  smalLabel: {
-    fontFamily: "MontserratMedium",
-    fontSize: 14,
-  },
-  button: {
-    flexDirection: "row",
-    backgroundColor: "#4B3EFF",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    gap: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 8,
-  },
-  chip: {
-    paddingLeft: 16,
-    paddingVertical: 8,
-    paddingRight: 8,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#A59EFF",
-    backgroundColor: "#EDECFF",
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    gap: 8,
-  },
-});
+};
 
 export default Etapa3;

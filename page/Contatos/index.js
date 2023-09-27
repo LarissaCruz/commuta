@@ -6,7 +6,7 @@ import CardContatos from "../../components/CardContatos";
 function Contatos() {
   return (
     <View style={styles.container}>
-      <CardHeader></CardHeader>
+      <CardHeader />
       <CardContatos />
       <CardContatos />
       <CardContatos />

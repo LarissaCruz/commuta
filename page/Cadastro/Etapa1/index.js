@@ -1,14 +1,27 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { SafeAreaView, TouchableOpacity } from "react-native";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { ProgressBar } from "react-native-paper";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import { ProgressBar, Checkbox } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
+import styles from "./styles";
 import Input from "../../../components/Input";
-import { Checkbox } from "react-native-paper";
 
 function Etapa1({ navigation }) {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
+
+  const handleContinue = () => {
+    navigation.navigate("Etapa2");
+  };
+
+  const handleLogin = () => {
+    navigation.navigate("Login");
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.navbar}>
@@ -23,42 +36,22 @@ function Etapa1({ navigation }) {
           Preencha os campos abaixo para criar sua conta no Commuta.
         </Text>
       </View>
-      <View
-        style={{
-          flexDirection: "coluns",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            width: 124,
-            height: 124,
-            backgroundColor: "#C9C5FF",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 12,
-            marginBottom: 16,
-          }}
-        >
+      <View style={styles.photoContainer}>
+        <TouchableOpacity style={styles.photoButton}>
           <MaterialIcons name="add-a-photo" size={24} color="#4B3EFF" />
         </TouchableOpacity>
         <Text style={[styles.label, { color: "#333333" }]}>
           Foto (Opcional)
         </Text>
       </View>
-      <Input placeholderName={"Nome"}></Input>
-      <Input placeholderName={"Sobrenome"}></Input>
-      <Input placeholderName={"Código de indicação (Opcional)"}></Input>
-      <Input placeholderName={"Telefone (Opcional)"}></Input>
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 8,
-
-          alignItems: "center",
-        }}
-      >
+      <Input placeholderName={"Nome"} style={styles.input} />
+      <Input placeholderName={"Sobrenome"} style={styles.input} />
+      <Input
+        placeholderName={"Código de indicação (Opcional)"}
+        style={styles.input}
+      />
+      <Input placeholderName={"Telefone (Opcional)"} style={styles.input} />
+      <View style={styles.checkboxContainer}>
         <Checkbox
           status={checked ? "checked" : "unchecked"}
           onPress={() => {
@@ -69,15 +62,8 @@ function Etapa1({ navigation }) {
         />
         <Text>Esse número é WhatsApp</Text>
       </View>
-      <Input placeholderName={"Telefone (Opcional)"}></Input>
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 8,
-
-          alignItems: "center",
-        }}
-      >
+      <Input placeholderName={"Telefone (Opcional)"} style={styles.input} />
+      <View style={styles.checkboxContainer}>
         <Checkbox
           status={checked ? "checked" : "unchecked"}
           onPress={() => {
@@ -88,15 +74,12 @@ function Etapa1({ navigation }) {
         />
         <Text>Esse número é WhatsApp</Text>
       </View>
-      <TouchableOpacity
-        style={[styles.button]}
-        onPress={() => navigation.navigate("Etapa2")}
-      >
-        <Text style={[styles.labelButton]}>Continuar</Text>
+      <TouchableOpacity style={styles.button} onPress={handleContinue}>
+        <Text style={styles.labelButton}>Continuar</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: "white" }]}
-        onPress={() => navigation.navigate("Login")}
+        onPress={handleLogin}
       >
         <Text style={[styles.labelButton, { color: "#4B3EFF" }]}>
           Já possuo uma conta
@@ -105,47 +88,5 @@ function Etapa1({ navigation }) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-    backgroundColor: "#FCFCFC",
-  },
-  navbar: {
-    paddingTop: 40,
-    paddingBottom: 18,
-  },
-  titulo: {
-    fontFamily: "MontserratMedium",
-    fontSize: 20,
-    textAlign: "center",
-  },
-  input: {
-    fontFamily: "MontserratRegular",
-    fontSize: 16,
-  },
-  label: {
-    fontFamily: "MontserratRegular",
-    fontSize: 16,
-    marginBottom: 28,
-  },
-  labelButton: {
-    fontFamily: "MontserratMedium",
-    fontSize: 16,
-    color: "white",
-  },
-  button: {
-    flexDirection: "row",
-    backgroundColor: "#4B3EFF",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    gap: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 8,
-  },
-});
 
 export default Etapa1;

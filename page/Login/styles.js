@@ -6,27 +6,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: "white",
   },
-  containerLogo: {
+  logoContainer: {
     flex: 1 / 1.1,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 56,
   },
-  titulo: {
+  logo: {
+    width: 156,
+    height: 156,
+    borderRadius: 10,
+  },
+  title: {
     fontFamily: "MontserratMedium",
     fontSize: 20,
     marginBottom: 10,
   },
-  label: {
+  description: {
     fontFamily: "MontserratRegular",
     fontSize: 16,
-    marginBottom: 28,
-  },
-
-  input: {
-    backgroundColor: "white",
-    fontFamily: "MontserratRegular",
-    lineHeight: 24,
     marginBottom: 28,
   },
   link: {
@@ -34,22 +32,37 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     textAlign: "right",
   },
-  labelButton: {
-    fontFamily: "MontserratMedium",
-    fontSize: 16,
-    color: "white",
+  input: {
+    backgroundColor: "white",
+    fontFamily: "MontserratRegular",
+    lineHeight: 24,
+    marginBottom: 28,
   },
   button: {
     flexDirection: "row",
-    backgroundColor: "#4B3EFF",
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 12,
     gap: 8,
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 5,
   },
-  texto: {
+  primaryButton: {
+    backgroundColor: "#4B3EFF",
+  },
+  secondaryButton: {
+    backgroundColor: "white",
+  },
+  buttonText: {
+    fontFamily: "MontserratMedium",
+    fontSize: 18,
+    color: "white",
+  },
+  secondaryButtonText: {
+    color: "#4B3EFF",
+  },
+  orText: {
     fontFamily: "MontserratBold",
     fontSize: 16,
     textAlign: "center",

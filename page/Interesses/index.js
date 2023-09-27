@@ -1,25 +1,28 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { TextInput } from "react-native-paper";
-import { Button } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 import CardHeader from "../../components/CardHeader";
 import CardInteresses from "../../components/CardInteresses";
 import { Ionicons } from "@expo/vector-icons";
 
-function Interesse() {
+const Interesse = () => {
+  const handleManageInterests = () => {
+    // Implemente a lógica para gerenciar interesses aqui
+  };
+
   return (
     <View style={styles.container}>
-      <CardHeader></CardHeader>
-      <TouchableOpacity style={styles.button} onPress={null}>
+      <CardHeader />
+      <TouchableOpacity style={styles.button} onPress={handleManageInterests}>
         <Text style={styles.label}>Gerir Interesses</Text>
         <Ionicons name="settings" size={20} color="white" />
       </TouchableOpacity>
-      <CardInteresses></CardInteresses>
-      <CardInteresses></CardInteresses>
-      <CardInteresses></CardInteresses>
+      <CardInteresses />
+      <CardInteresses />
+      <CardInteresses />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
