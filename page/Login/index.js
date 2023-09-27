@@ -16,7 +16,7 @@ function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image source={require("../../assets/logo.png")} />
+        <Image source={require("../../assets/logo.png")} style={styles.logo} />
       </View>
       <Text style={styles.title}>Boas Vindas!</Text>
       <Text style={styles.description}>
@@ -93,6 +93,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 56,
+  },
+  logo: {
+    width: 156,
+    height: 156,
+    borderRadius: 10,
   },
   title: {
     fontFamily: "MontserratMedium",
