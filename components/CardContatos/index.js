@@ -1,14 +1,19 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Avatar, Card } from "react-native-paper";
 import { List } from "react-native-paper";
 import { EvilIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-function CardContatos() {
+function CardContatos({ navigation }) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("Detalhes do Contato");
+      }}
+      style={styles.card}
+    >
       <View
         style={{
           justifyContent: "center",
@@ -28,7 +33,7 @@ function CardContatos() {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -10,10 +10,12 @@ import { Feather } from "@expo/vector-icons";
 import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/Header";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppTabs() {
+  const navigation = useNavigation();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -35,7 +37,9 @@ export default function AppTabs() {
         name="Novidades"
         component={Home}
         options={{
-          headerTitle: () => <Header name="Novidades"></Header>,
+          headerTitle: () => (
+            <Header name="Novidades" navigation={navigation}></Header>
+          ),
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -58,7 +62,9 @@ export default function AppTabs() {
         name="Contatos"
         component={Contatos}
         options={{
-          headerTitle: (props) => <Header name="Contatos"></Header>,
+          headerTitle: (props) => (
+            <Header name="Contatos" navigation={navigation}></Header>
+          ),
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -81,7 +87,9 @@ export default function AppTabs() {
         name="Buscar"
         component={Search}
         options={{
-          headerTitle: (props) => <Header name="Buscar"></Header>,
+          headerTitle: (props) => (
+            <Header name="Buscar" navigation={navigation}></Header>
+          ),
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -104,7 +112,9 @@ export default function AppTabs() {
         name="Interesses"
         component={Interesses}
         options={{
-          headerTitle: (props) => <Header name="Interesses"></Header>,
+          headerTitle: (props) => (
+            <Header name="Interesses" navigation={navigation}></Header>
+          ),
           tabBarIcon: ({ focused }) => (
             <View
               style={{

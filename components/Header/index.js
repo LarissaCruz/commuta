@@ -1,17 +1,20 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Avatar, Card } from "react-native-paper";
 import { List } from "react-native-paper";
 
-function Header({ name }) {
+function Header({ name, navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{name}</Text>
-      <View
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Perfil");
+        }}
         style={{ borderWidth: 2, borderColor: "#4B3EFF", borderRadius: 50 }}
       >
         <Avatar.Image size={40} source={require("../../assets/avatar.png")} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -4,13 +4,15 @@ import CardHeader from "../../components/CardHeader";
 import CardNovidades from "../../components/CardNovidades";
 import CardContatos from "../../components/CardContatos";
 
-function Home() {
+function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <CardHeader></CardHeader>
-      <CardNovidades />
-      <CardNovidades />
-      <CardNovidades />
+      <View style={{ paddingHorizontal: 16 }}>
+        <CardNovidades navigation={navigation} />
+        <CardNovidades />
+        <CardNovidades />
+      </View>
     </View>
   );
 }
@@ -18,7 +20,6 @@ function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
     backgroundColor: "#FCFCFC",
   },
 });

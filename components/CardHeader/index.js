@@ -23,6 +23,7 @@ function CardHeader() {
 
 const styles = StyleSheet.create({
   card: {
+    marginHorizontal: 16,
     marginVertical: 5,
     paddingTop: 5,
     paddingBottom: 12,

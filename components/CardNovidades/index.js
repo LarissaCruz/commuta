@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Avatar, Card } from "react-native-paper";
 import { List } from "react-native-paper";
 import { EvilIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-function CardNovidades() {
+function CardNovidades({ navigation }) {
   return (
     <View style={styles.card}>
       <View style={{ width: "90%" }}>
@@ -20,9 +20,12 @@ function CardNovidades() {
           <Text style={styles.label}>Oferece: Ilhéus (BA)</Text>
         </View>
       </View>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Detalhes do Interesse")}
+        style={{ justifyContent: "center", alignItems: "center" }}
+      >
         <MaterialIcons name="keyboard-arrow-right" size={24} color="#4B3EFF" />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

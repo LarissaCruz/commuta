@@ -5,7 +5,7 @@ import CardHeader from "../../components/CardHeader";
 import CardInteresses from "../../components/CardInteresses";
 import { Ionicons } from "@expo/vector-icons";
 
-const Interesse = () => {
+const Interesse = ({ navigation }) => {
   const handleManageInterests = () => {
     // Implemente a lógica para gerenciar interesses aqui
   };
@@ -13,7 +13,10 @@ const Interesse = () => {
   return (
     <View style={styles.container}>
       <CardHeader />
-      <TouchableOpacity style={styles.button} onPress={handleManageInterests}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={navigation.navigate("Gerir Interesses")}
+      >
         <Text style={styles.label}>Gerir Interesses</Text>
         <Ionicons name="settings" size={20} color="white" />
       </TouchableOpacity>

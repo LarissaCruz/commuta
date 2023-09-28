@@ -3,11 +3,11 @@ import { View, Text, StyleSheet } from "react-native";
 import CardHeader from "../../components/CardHeader";
 import CardContatos from "../../components/CardContatos";
 
-function Contatos() {
+function Contatos({ navigation }) {
   return (
     <View style={styles.container}>
       <CardHeader />
-      <CardContatos />
+      <CardContatos navigation={navigation} />
       <CardContatos />
       <CardContatos />
     </View>

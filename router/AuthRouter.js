@@ -6,6 +6,12 @@ import Etapa3 from "../page/Cadastro/Etapa3";
 import Etapa4 from "../page/Cadastro/Etapa4";
 import BottomTabs from "./BottomTabs";
 import ConfirmEmailScreen from "../page/Cadastro/ConfirmEmailScreen";
+import Detalhes from "../page/Detalhes";
+import Perfil from "../page/Perfil";
+import { MaterialIcons } from "@expo/vector-icons";
+import { View } from "react-native";
+import Configuracao from "../page/Configuracao/index.js";
+
 const Stack = createStackNavigator();
 
 export default function AuthRouter() {
@@ -56,6 +62,46 @@ export default function AuthRouter() {
       <Stack.Screen
         name="Home"
         component={BottomTabs}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detalhes do Interesse"
+        component={Detalhes}
+        options={{
+          headerBackImage: () => (
+            <View style={{ paddingLeft: 20 }}>
+              <MaterialIcons name="arrow-back-ios" size={16} color="#4B3EFF" />
+            </View>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Gerir Interesses"
+        component={Configuracao}
+        options={{
+          headerBackImage: () => (
+            <View style={{ paddingLeft: 20 }}>
+              <MaterialIcons name="arrow-back-ios" size={16} color="#4B3EFF" />
+            </View>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Detalhes do Contato"
+        component={Detalhes}
+        options={{
+          headerBackImage: () => (
+            <View style={{ paddingLeft: 20 }}>
+              <MaterialIcons name="arrow-back-ios" size={16} color="#4B3EFF" />
+            </View>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Perfil"
+        component={Perfil}
         options={{
           headerShown: false,
         }}
