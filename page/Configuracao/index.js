@@ -1,26 +1,70 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CardHeader from "../../components/CardHeader";
+import { AntDesign } from '@expo/vector-icons'; 
 
 function Configuracao({ navigation }) {
   return (
     <View style={styles.container}>
       <CardHeader />
-      <Text style={[styles.titulo, { marginTop: 10 }]}>
-        Amanda Oliveira Souza
-      </Text>
-      <View
-        style={{
-          flexDirection: "row",
-          marginBottom: 10,
-          gap: 8,
-          flexWrap: "wrap",
-        }}
-      >
-        <View style={[styles.chip]} key={index}>
-          <Text style={styles.smalLabel}>Acre (AC)</Text>
+      <View style={{paddingHorizontal:24}}>
+        <Text style={[styles.titulo, { marginTop: 10 }]}>
+          Estados:
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: 10,
+            gap: 8,
+            flexWrap: "wrap",
+          }}
+        >
+          <View style={[styles.chip]} >
+            <Text style={styles.smalLabel}>Acre (AC)</Text>
+          </View>
+          <View style={[styles.chip]} >
+            <Text style={styles.smalLabel}>Acre (AC)</Text>
+          </View>
         </View>
-      </View>
+        <Text style={[styles.titulo, { marginTop: 10 }]}>
+        Cidades:
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: 10,
+            gap: 8,
+            flexWrap: "wrap",
+          }}
+        >
+          <View style={[styles.chip]} >
+            <Text style={styles.smalLabel}>Rio Branco (AC)</Text>
+          </View>
+          <View style={[styles.chip]} >
+            <Text style={styles.smalLabel}>Salvador (BA)</Text>
+          </View>
+        </View>
+        <Text style={[styles.titulo, { marginTop: 10 }]}>
+        Órgão Institucional:
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: 10,
+            gap: 8,
+            flexWrap: "wrap",
+          }}
+        >
+          <View style={[styles.chip]} >
+            <Text style={styles.smalLabel}>Instituto Federal de Educação Ciência e Tecnologia</Text>
+          </View>
+        </View>
+        
+      </View> 
+      <TouchableOpacity style={styles.button} onPress={null}>
+            <AntDesign name="plus" size={20} color="white" />
+            <Text style={styles.labelbutton}>Adicionar Interesse</Text>
+         </TouchableOpacity>
     </View>
   );
 }
@@ -54,6 +98,24 @@ const styles = StyleSheet.create({
   smalLabel: {
     fontFamily: "MontserratMedium",
     fontSize: 14,
+  },
+  button: {
+    flexDirection: "row",
+    paddingVertical: 16,
+    paddingHorizontal: 25,
+    borderRadius: 12,
+    gap: 8,
+    backgroundColor: "#4B3EFF",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop:40,
+    marginHorizontal:16
+  },
+  labelbutton: {
+    fontSize: 16,
+    fontFamily: "MontserratMedium",
+    color: "white",
+   
   },
 });
 

@@ -7,9 +7,11 @@ function Contatos({ navigation }) {
   return (
     <View style={styles.container}>
       <CardHeader />
-      <CardContatos navigation={navigation} />
-      <CardContatos />
-      <CardContatos />
+      <View style={{paddingHorizontal: 16}}>
+        <CardContatos navigation={navigation} />
+        <CardContatos />
+        <CardContatos />
+      </View>
     </View>
   );
 }
@@ -17,7 +19,7 @@ function Contatos({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
+    
     backgroundColor: "#FCFCFC",
   },
 });

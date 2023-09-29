@@ -13,16 +13,18 @@ const Interesse = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <CardHeader />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={navigation.navigate("Gerir Interesses")}
-      >
-        <Text style={styles.label}>Gerir Interesses</Text>
-        <Ionicons name="settings" size={20} color="white" />
-      </TouchableOpacity>
-      <CardInteresses />
-      <CardInteresses />
-      <CardInteresses />
+      <View style={{paddingHorizontal: 16}}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={()=>navigation.navigate("Gerir Interesses")}
+        >
+          <Text style={styles.label}>Gerir Interesses</Text>
+          <Ionicons name="settings" size={20} color="white" />
+        </TouchableOpacity>
+        <CardInteresses />
+        <CardInteresses />
+        <CardInteresses />
+      </View>
     </View>
   );
 };
@@ -30,7 +32,6 @@ const Interesse = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
     backgroundColor: "#FCFCFC",
   },
   button: {
