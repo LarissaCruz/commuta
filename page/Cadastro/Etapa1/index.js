@@ -1,25 +1,50 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Keyboard, Alert } from "react-native";
 import { ProgressBar, Checkbox } from "react-native-paper";
-import { MaterialIcons } from "@expo/vector-icons";
+import { useForm } from "react-hook-form";
 import styles from "./styles";
 import Input from "../../../components/Input";
+import ImageCustom from "../../../components/ImageCustom";
+import { useFormContext } from "../../../context/FormContext";
 
 function Etapa1({ navigation }) {
-  const [checked, setChecked] = useState(false);
-
-  const handleContinue = () => {
-    navigation.navigate("Etapa2");
-  };
+  const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(null);
+  const { formData, updateFormData } = useFormContext(); 
+  const [checkedNumberOne, setCheckedNumberOne] = useState(false);
+  const [checkedNumberTwo, setCheckedNumberTwo] = useState(false);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
   const handleLogin = () => {
     navigation.navigate("Login");
+  };
+
+
+  const onSubmit = async ({ nome, sobrenome, codigo, telefoneOne, telefoneTwo }) => {
+    const data = {
+      nome,
+      sobrenome,
+      codigo,
+      telefoneOne,
+      telefoneTwo,
+      imagePerfil: image,
+      checkedNumberOne,
+      checkedNumberTwo
+    };
+    try {
+      Keyboard.dismiss();
+      setLoading(true);
+      console.log("e", data);
+      updateFormData(data);
+      navigation.navigate("Etapa2");
+    } catch (e) {
+      setLoading(false);
+      // ShowAlert("Erro", e.message);
+    }
   };
 
   return (
@@ -36,45 +61,69 @@ function Etapa1({ navigation }) {
           Preencha os campos abaixo para criar sua conta no Commuta.
         </Text>
       </View>
-      <View style={styles.photoContainer}>
-        <TouchableOpacity style={styles.photoButton}>
-          <MaterialIcons name="add-a-photo" size={24} color="#4B3EFF" />
-        </TouchableOpacity>
-        <Text style={[styles.label, { color: "#333333" }]}>
-          Foto (Opcional)
-        </Text>
-      </View>
-      <Input placeholderName={"Nome"} style={styles.input} />
-      <Input placeholderName={"Sobrenome"} style={styles.input} />
+      <ImageCustom setImage={setImage} image={image} />
+      <Input
+        placeholderName={"Nome"}
+        style={styles.input}
+        name={"nome"}
+        control={control}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+        }}
+      />
+      <Input
+        placeholderName={"Sobrenome"}
+        style={styles.input}
+        name={"sobrenome"}
+        control={control}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+        }}
+      />
       <Input
         placeholderName={"Código de indicação (Opcional)"}
+        keyboardType="numeric"
         style={styles.input}
+        name={"codigo"}
+        control={control}
       />
-      <Input placeholderName={"Telefone (Opcional)"} style={styles.input} />
+      <Input
+        placeholderName={"Telefone (Opcional)"}
+        style={styles.input}
+        name={"telefoneOne"}
+        control={control}
+        keyboardType="numeric"
+      />
       <View style={styles.checkboxContainer}>
         <Checkbox
-          status={checked ? "checked" : "unchecked"}
+          status={checkedNumberOne ? "checked" : "unchecked"}
           onPress={() => {
-            setChecked(!checked);
+            setCheckedNumberOne(!checkedNumberOne);
           }}
           color="#8178FF"
           uncheckedColor="#8178FF"
         />
         <Text>Esse número é WhatsApp</Text>
       </View>
-      <Input placeholderName={"Telefone (Opcional)"} style={styles.input} />
+      <Input
+        placeholderName={"Telefone (Opcional)"}
+        style={styles.input}
+        name={"telefoneTwo"}
+        control={control}
+        keyboardType="numeric"
+      />
       <View style={styles.checkboxContainer}>
         <Checkbox
-          status={checked ? "checked" : "unchecked"}
+          status={checkedNumberTwo ? "checked" : "unchecked"}
           onPress={() => {
-            setChecked(!checked);
+            setCheckedNumberTwo(!checkedNumberTwo);
           }}
           color="#8178FF"
           uncheckedColor="#8178FF"
         />
         <Text>Esse número é WhatsApp</Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={handleContinue}>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
         <Text style={styles.labelButton}>Continuar</Text>
       </TouchableOpacity>
       <TouchableOpacity

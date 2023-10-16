@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import AppTabs from "./router/BottomTabs";
 import AuthRouter from "./router/AuthRouter";
+import { FormProvider } from "./context/FormContext";
 export default function App() {
   let [fontsLoaded] = useFonts({
     MontserratBold: require("./assets/fontes/Montserrat-Bold.ttf"),
@@ -19,7 +20,9 @@ export default function App() {
           barStyle="light-content" // Estilo do texto (light ou dark)
           translucent={true} // Tornar a barra de status transparente
         />
-        <AuthRouter />
+        <FormProvider>
+          <AuthRouter />
+        </FormProvider>
       </NavigationContainer>
     );
   }

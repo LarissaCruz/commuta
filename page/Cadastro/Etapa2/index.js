@@ -1,22 +1,23 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { List, ProgressBar } from "react-native-paper";
+import { useForm } from "react-hook-form";
+
 import Input from "../../../components/Input";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import AccordionItem from "../../../components/AccordionItem"; // Importando o componente AccordionItem
 import styles from "./styles";
 
 function Etapa2({ navigation }) {
-  const [expandedAccordion, setExpandedAccordion] = React.useState(null);
+  const [expandedArea, setExpandedArea] = useState(false);
+  const [expandedSubArea, setExpandedSubArea] = useState(false);
+  const [expandedState, setExpandedState] = useState(false);
 
-  const handleAccordionPress = (accordionId) => {
-    setExpandedAccordion(
-      expandedAccordion === accordionId ? null : accordionId
-    );
-  };
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-  const isAccordionExpanded = (accordionId) => {
-    return expandedAccordion === accordionId;
-  };
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
@@ -31,162 +32,115 @@ function Etapa2({ navigation }) {
           Prazer conhecer você. Agora nos conte sobre o seu trabalho atual.
         </Text>
       </View>
-      <Input placeholderName={"Cargo"}></Input>
-      <List.AccordionGroup>
-        <List.Accordion
-          expanded={isAccordionExpanded("1")}
-          onPress={() => handleAccordionPress("1")}
-          title={<Text style={{ color: "#808080" }}>Área </Text>}
-          id="1"
-          style={{
-            borderColor: "#808080",
-            borderWidth: 1,
-            paddingVertical: 0,
-            borderRadius: 10,
-            backgroundColor: "white",
-            marginBottom: 16,
-            height: 48,
-            color: "#808080",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "white",
-              shadowColor: "#000000",
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              borderRadius: 10,
-              borderTopRightRadius: 10,
-              shadowOffset: {
-                height: 1,
-                width: 1,
-              },
-              elevation: 5,
-            }}
-          >
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-          </View>
-        </List.Accordion>
-        <List.Accordion
-          expanded={isAccordionExpanded("1")}
-          onPress={() => handleAccordionPress("1")}
-          title={<Text style={{ color: "#808080" }}>Sub-área (Opcional) </Text>}
-          id="1"
-          style={{
-            borderColor: "#808080",
-            borderWidth: 1,
-            paddingVertical: 0,
-            borderRadius: 10,
-            backgroundColor: "white",
-            marginBottom: 16,
-            height: 48,
-            color: "#808080",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "white",
-              shadowColor: "#000000",
-              shadowOpacity: 0.8,
-              shadowRadius: 2,
-              borderRadius: 10,
-              borderTopRightRadius: 10,
-              shadowOffset: {
-                height: 1,
-                width: 1,
-              },
-              elevation: 5,
-            }}
-          >
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-            <List.Item title="Item 1" />
-          </View>
-        </List.Accordion>
-        <View
-          style={{
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "row",
-          }}
-        >
+
+      <Input
+        placeholderNamer="Cargo"
+        name="Cargo"
+        control={control}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+        }}
+      />
+
+      <AccordionItem
+        expanded={expandedArea}
+        onPress={() => setExpandedArea(!expandedArea)}
+        title="Área"
+        id="1"
+      >
+        <View>
+          <List.Item title="Item 1" />
+          <List.Item title="Item 2" />
+          <List.Item title="Item 3" />
+          <List.Item title="Item 4" />
+        </View>
+      </AccordionItem>
+
+      <AccordionItem
+        expanded={expandedSubArea}
+        onPress={() => setExpandedSubArea(!expandedSubArea)}
+        title="Sub-área (Opcional)"
+        id="2"
+      >
+        <View>
+          <List.Item title="Item 1" />
+          <List.Item title="Item 2" />
+          <List.Item title="Item 3" />
+          <List.Item title="Item 4" />
+        </View>
+      </AccordionItem>
+
+      <View style={{ flexDirection: "row", justifyContent: 'space-between', alignItems:"center" }}>
+        <View style={{ width: "65%" }}>
           <Input
-            placeholderName={"Cidade2"}
-            stylesInput={{ width: "65%" }}
-          ></Input>
-          <List.Accordion
-            expanded={isAccordionExpanded("1")}
-            onPress={() => handleAccordionPress("1")}
-            title={<Text style={{ color: "#808080" }}>UF </Text>}
-            id="1"
+            placeholderName={"Cidade"}
+            name={"Cidade"}
+            control={control}
+            rules={{
+              required: "Verifique se todos os campos estão preenchidos",
+            }}
+          />
+        </View>
+        <View style={{ alignItems: "center", height: 55, zIndex:10 }}>
+          <AccordionItem
+            expanded={expandedState}
+            onPress={() => setExpandedState(!expandedState)}
+            title="UF"
+            id="3"
             style={{
               borderColor: "#808080",
               borderWidth: 1,
               paddingVertical: 0,
               borderRadius: 8,
               backgroundColor: "white",
-              marginBottom: 10,
               height: 48,
-              color: "#808080",
-              width: 100,
+              width: 100
             }}
           >
-            <View
-              style={{
-                backgroundColor: "white",
-                shadowColor: "#000000",
-                shadowOpacity: 0.8,
-                shadowRadius: 2,
-                borderRadius: 10,
-                borderTopRightRadius: 10,
-                shadowOffset: {
-                  height: 1,
-                  width: 1,
-                },
-                elevation: 5,
-              }}
-            >
+            <View style={{
+              backgroundColor: "white",
+              shadowColor: "#000000",
+              shadowOpacity: 0.8,
+              shadowRadius: 2,
+              borderRadius: 10,
+             
+              shadowOffset: {
+                height: 1,
+                width: 1,
+              },
+              elevation: 5,
+              marginTop: 10,
+              zIndex: 2, // Ajuste o zIndex aqui
+            }}>
               <List.Item title="Item 1" />
-              <List.Item title="Item 1" />
-              <List.Item title="Item 1" />
-              <List.Item title="Item 1" />
+              <List.Item title="Item 2" />
+              <List.Item title="Item 3" />
+              <List.Item title="Item 4" />
             </View>
-          </List.Accordion>
+          </AccordionItem>
         </View>
-        <Input placeholderName={"Órgão institucional"}></Input>
-      </List.AccordionGroup>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "flex-end",
-          paddingBottom: 15,
-        }}
-      >
-        <View
-          style={{
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "row",
-            paddingHorizontal: 10,
-          }}
-        >
+      </View>
+
+      <Input
+        placeholderName={"Órgão institucional"}
+        name={"Orgao"}
+        control={control}
+        stylesInput={{ zIndex:1}}
+      />
+
+      <View style={{ flex: 1, justifyContent: "flex-end", paddingBottom: 15 }}>
+        <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 10 }}>
           <TouchableOpacity
             style={[styles.button, { backgroundColor: "white" }]}
             onPress={() => navigation.navigate("Cadastro")}
           >
-            <Text style={[styles.labelButton, { color: "#4B3EFF" }]}>
-              Anterior
-            </Text>
+            <Text style={[styles.labelButton, { color: "#4B3EFF" }]}>Anterior</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button]}
+            style={styles.button}
             onPress={() => navigation.navigate("Etapa3")}
           >
-            <Text style={[styles.labelButton]}>Proximo</Text>
+            <Text style={styles.labelButton}>Próximo</Text>
           </TouchableOpacity>
         </View>
       </View>
