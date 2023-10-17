@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import CardHeader from "../../components/CardHeader";
-import CardInteresses from "../../components/CardInteresses";
+import CardIPreferences from "../../components/CardIPreferences";
 import { Ionicons } from "@expo/vector-icons";
 
-const Interesse = ({ navigation }) => {
+const PreferencesScreen = ({ navigation }) => {
   const handleManageInterests = () => {
     // Implemente a lógica para gerenciar interesses aqui
   };
@@ -21,9 +21,9 @@ const Interesse = ({ navigation }) => {
           <Text style={styles.label}>Gerir Interesses</Text>
           <Ionicons name="settings" size={20} color="white" />
         </TouchableOpacity>
-        <CardInteresses />
-        <CardInteresses />
-        <CardInteresses />
+        <CardIPreferences />
+        <CardIPreferences />
+        <CardIPreferences />
       </View>
     </View>
   );
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Interesse;
+export default PreferencesScreen;

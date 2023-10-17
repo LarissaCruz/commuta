@@ -6,7 +6,7 @@ import { EvilIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-function CardContatos({ navigation }) {
+function CardContacts({ navigation }) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardContatos;
+export default CardContacts;

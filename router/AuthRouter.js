@@ -1,16 +1,16 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Login from "../page/Login/index";
-import Etapa1 from "../page/Cadastro/Etapa1";
-import Etapa2 from "../page/Cadastro/Etapa2";
-import Etapa3 from "../page/Cadastro/Etapa3";
-import Etapa4 from "../page/Cadastro/Etapa4";
+import LoginScreen from "../page/LoginScreen/index";
+import Etapa1 from "../page/RegistrationScreen/Etapa1";
+import Etapa2 from "../page/RegistrationScreen/Etapa2";
+import Etapa3 from "../page/RegistrationScreen/Etapa3";
+import Etapa4 from "../page/RegistrationScreen/Etapa4";
 import BottomTabs from "./BottomTabs";
-import ConfirmEmailScreen from "../page/Cadastro/ConfirmEmailScreen";
-import Detalhes from "../page/Detalhes";
-import Perfil from "../page/Perfil";
+import ConfirmEmailScreen from "../page/RegistrationScreen/ConfirmEmailScreen";
+import DetailsScreen from "../page/DetailsScreen";
+import ProfileScreen from "../page/ProfileScreen";
 import { MaterialIcons } from "@expo/vector-icons";
 import { View } from "react-native";
-import Configuracao from "../page/Configuracao/index.js";
+import SettingsScreen from "../page/SettingsScreen/index.js";
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,7 @@ export default function AuthRouter() {
     }}>
       <Stack.Screen
         name="Login"
-        component={Login}
+        component={LoginScreen}
         options={{
           headerShown: false,
         }}
@@ -72,7 +72,7 @@ export default function AuthRouter() {
       />
       <Stack.Screen
         name="Detalhes do Interesse"
-        component={Detalhes}
+        component={DetailsScreen}
         options={{
           headerBackImage: () => (
             <View style={{ paddingLeft: 20 }}>
@@ -83,7 +83,7 @@ export default function AuthRouter() {
       />
       <Stack.Screen
         name="Gerir Interesses"
-        component={Configuracao}
+        component={SettingsScreen}
         options={{
           headerBackImage: () => (
             <View style={{ paddingLeft: 20 }}>
@@ -94,7 +94,7 @@ export default function AuthRouter() {
       />
       <Stack.Screen
         name="Detalhes do Contato"
-        component={Detalhes}
+        component={DetailsScreen}
         options={{
           headerBackImage: () => (
             <View style={{ paddingLeft: 20 }}>
@@ -105,7 +105,7 @@ export default function AuthRouter() {
       />
       <Stack.Screen
         name="Perfil"
-        component={Perfil}
+        component={ProfileScreen}
         options={{
           headerShown: false,
         }}

@@ -17,7 +17,7 @@ function Etapa2({ navigation }) {
     control,
     formState: { errors },
   } = useForm();
-
+ 
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>

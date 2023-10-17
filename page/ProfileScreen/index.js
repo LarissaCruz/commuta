@@ -14,7 +14,7 @@ import CustomInput from "../../components/CustomInput";
 import { AntDesign } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
 
-function Perfil({ navigation }) {
+function ProfileScreen({ navigation }) {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const openMenu = () => setMenuVisible(true);
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Perfil;
+export default ProfileScreen;

@@ -40,20 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 8,
   },
-  photoContainer: {
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  photoButton: {
-    width: 124,
-    height: 124,
-    backgroundColor: "#C9C5FF",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 12,
-    marginBottom: 16,
-  },
+
   checkboxContainer: {
     flexDirection: "row",
     gap: 8,

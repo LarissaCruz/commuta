@@ -1,12 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Login from "../page/Login";
-import Home from "../page/Home/index";
-import Contatos from "../page/Contatos/index";
-import Search from "../page/Search/index";
-import Interesses from "../page/Interesses/index";
+import HomeScreen from "../page/HomeScreen/index";
+import ContactsScreen from "../page/ContactsScreen/index";
+import SearchScreen from "../page/SearchScreen/index";
+import PreferencesScreen from "../page/PreferencesScreen/index";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
 import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../components/Header";
@@ -35,7 +33,7 @@ export default function AppTabs() {
     >
       <Tab.Screen
         name="Novidades"
-        component={Home}
+        component={HomeScreen}
         options={{
           headerTitle: () => (
             <Header name="Novidades" navigation={navigation}></Header>
@@ -60,7 +58,7 @@ export default function AppTabs() {
       />
       <Tab.Screen
         name="Contatos"
-        component={Contatos}
+        component={ContactsScreen}
         options={{
           headerTitle: (props) => (
             <Header name="Contatos" navigation={navigation}></Header>
@@ -85,7 +83,7 @@ export default function AppTabs() {
       />
       <Tab.Screen
         name="Buscar"
-        component={Search}
+        component={SearchScreen}
         options={{
           headerTitle: (props) => (
             <Header name="Buscar" navigation={navigation}></Header>
@@ -110,7 +108,7 @@ export default function AppTabs() {
       />
       <Tab.Screen
         name="Interesses"
-        component={Interesses}
+        component={PreferencesScreen}
         options={{
           headerTitle: (props) => (
             <Header name="Interesses" navigation={navigation}></Header>

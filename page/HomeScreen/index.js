@@ -1,17 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import CardHeader from "../../components/CardHeader";
-import CardNovidades from "../../components/CardNovidades";
-import CardContatos from "../../components/CardContatos";
+import CardNews from "../../components/CardNews";
 
-function Home({ navigation }) {
+
+function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <CardHeader></CardHeader>
       <View style={{ paddingHorizontal: 16 }}>
-        <CardNovidades navigation={navigation} />
-        <CardNovidades />
-        <CardNovidades />
+        <CardNews navigation={navigation} />
+        <CardNews />
+        <CardNews />
       </View>
     </View>
   );
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default HomeScreen;

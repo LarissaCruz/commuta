@@ -13,7 +13,7 @@ import { Avatar } from "react-native-paper";
 import { Foundation } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-function Detalhes({ route }) {
+function DetailsScreen({ route }) {
   const isScreenContact = route.name != "Detalhes do Interesse";
   return (
     <ScrollView style={styles.container}>
@@ -186,4 +186,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Detalhes;
+export default DetailsScreen;

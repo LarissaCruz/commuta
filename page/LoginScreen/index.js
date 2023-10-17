@@ -22,7 +22,7 @@ function LoginScreen({ navigation }) {
       setLoading(true);
       console.log("e", email);
       console.log("s", senha);
-      //await login(email, senha);
+      navigation.navigate("Home")
     } catch (e) {
       setLoading(false);
       //ShowAlert("Erro", e.message);

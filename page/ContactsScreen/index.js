@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import CardHeader from "../../components/CardHeader";
-import CardContatos from "../../components/CardContatos";
+import CardContacts from "../../components/CardContacts";
 
-function Contatos({ navigation }) {
+function ContactsScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <CardHeader />
       <View style={{paddingHorizontal: 16}}>
-        <CardContatos navigation={navigation} />
-        <CardContatos />
-        <CardContatos />
+        <CardContacts navigation={navigation} />
+        <CardContacts />
+        <CardContacts />
       </View>
     </View>
   );
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Contatos;
+export default ContactsScreen;

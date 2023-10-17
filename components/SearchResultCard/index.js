@@ -15,7 +15,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 
-function CardBusca({ data, item, removeCard, swipedDirection }) {
+function SearchResultCard({ data, item, removeCard, swipedDirection }) {
   const window = useWindowDimensions();
   const xPosition = React.useRef(new Animated.Value(0)).current;
   let cardOpacity = React.useRef(new Animated.Value(1)).current;
@@ -192,4 +192,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardBusca;
+export default SearchResultCard;

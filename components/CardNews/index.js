@@ -1,12 +1,10 @@
 import React from "react";
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Text, Avatar, Card } from "react-native-paper";
-import { List } from "react-native-paper";
-import { EvilIcons } from "@expo/vector-icons";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text } from "react-native-paper";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
-function CardNovidades({ navigation }) {
+function CardNews({ navigation }) {
   return (
     <View style={styles.card}>
       <View style={{ width: "90%" }}>
@@ -67,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardNovidades;
+export default CardNews;

@@ -7,7 +7,7 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-function CardInteresses() {
+function CardIPreferences() {
   return (
     <View style={styles.card}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardInteresses;
+export default CardIPreferences;

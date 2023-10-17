@@ -5,7 +5,7 @@ import CardHeader from "../../components/CardHeader";
 import { TextInput } from "react-native-paper";
 import { EvilIcons } from "@expo/vector-icons";
 
-import CardBusca from "../../components/CardBusca";
+import SearchResultCard from "../../components/SearchResultCard";
 const DATA = [
   {
     title: "Afro vibes",
@@ -58,7 +58,7 @@ const DATA = [
   },
 ];
 
-function Search() {
+function SearchScreen() {
   const [noMoreCard, setNoMoreCard] = React.useState(false);
   const [cardArray, setCardArray] = React.useState(DATA);
   const [swipeDirection, setSwipeDirection] = React.useState("--");
@@ -102,7 +102,7 @@ function Search() {
       <Text>Sugestões</Text>
       <View style={styles.cardContainer}>
         {cardArray.map((item, index) => (
-          <CardBusca
+          <SearchResultCard
             data={cardArray}
             currentIndex={index}
             key={index}
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Search;
+export default SearchScreen;
