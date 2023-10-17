@@ -27,7 +27,7 @@ function Etapa2({ navigation }) {
     formState: { errors },
   } = useForm();
  
-  const onSubmit = async ({ cargo, orgao}) => {
+  const onSubmit = async ({ cargo, orgao, cidade}) => {
     if (selectedItemArea!==null && selectedItemSubArea!==null && selectedItemState!== null){
       const data = {
         cargo,
@@ -35,12 +35,13 @@ function Etapa2({ navigation }) {
         subArea:selectedItemSubArea,
         uf:selectedItemState,
         orgao,
+        cidade
       };
 
     try {
       Keyboard.dismiss();
       setLoading(true);
-      console.log("e", data);
+     
       updateFormData(data);
       navigation.navigate("Etapa3");
 
@@ -75,6 +76,7 @@ function Etapa2({ navigation }) {
           required: "Verifique se todos os campos estão preenchidos",
         }}
       />
+       {errors.cargo && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
 
       <AccordionItem
         control={control}
@@ -91,7 +93,6 @@ function Etapa2({ navigation }) {
         <List.Item title="Item 4" onPress={() => handleItemPress("Item 4",setSelectedItemArea,setExpandedArea)} />
         </View>
       </AccordionItem>
-
       <AccordionItem
       expanded={expandedSubArea}
       onPress={() => setExpandedSubArea(!expandedSubArea)}
@@ -107,16 +108,18 @@ function Etapa2({ navigation }) {
         <List.Item title="Item 4" onPress={() => handleItemPress("Item 4",setSelectedItemSubArea,setExpandedSubArea)} />
       </View>
     </AccordionItem>
+    
       <View style={{ flexDirection: "row", justifyContent: 'space-between', alignItems:"center" }}>
         <View style={{ width: "65%" }}>
           <Input
             placeholderName={"Cidade"}
-            name={"Cidade"}
+            name={"cidade"}
             control={control}
             rules={{
               required: "Verifique se todos os campos estão preenchidos",
             }}
           />
+          {errors.cidade && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
         </View>
         <View style={{ alignItems: "center", height: 55, zIndex:10 }}>
           <AccordionItem
@@ -167,8 +170,11 @@ function Etapa2({ navigation }) {
         name={"orgao"}
         control={control}
         stylesInput={{ zIndex:1}}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+        }}
       />
-
+      {errors.orgao && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
       <View style={{ flex: 1, justifyContent: "flex-end", paddingBottom: 15 }}>
         <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 10 }}>
           <TouchableOpacity

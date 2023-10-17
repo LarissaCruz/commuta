@@ -20,8 +20,7 @@ function LoginScreen({ navigation }) {
     try {
       Keyboard.dismiss();
       setLoading(true);
-      console.log("e", email);
-      console.log("s", senha);
+  
       navigation.navigate("Home")
     } catch (e) {
       setLoading(false);
@@ -52,6 +51,7 @@ function LoginScreen({ navigation }) {
           },
         }}
       />
+      {errors.email && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
 
       <Input
         placeholderName="Senha"
@@ -64,7 +64,7 @@ function LoginScreen({ navigation }) {
           required: "Verifique se todos os campos estão preenchidos",
         }}
       />
-
+      {errors.senha && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
       <Text style={[styles.description, styles.link]}>Esqueci minha senha</Text>
 
       <TouchableOpacity

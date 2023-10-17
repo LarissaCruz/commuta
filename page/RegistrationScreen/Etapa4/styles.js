@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: "justify",
   },
+  error:{color:"red", fontSize:10}
 });
 
 export default styles;

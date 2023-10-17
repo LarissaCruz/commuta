@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
   },
+  error:{color:"red", fontSize:10}
 });
 
 export default styles;

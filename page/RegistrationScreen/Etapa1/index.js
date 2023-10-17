@@ -38,7 +38,7 @@ function Etapa1({ navigation }) {
     try {
       Keyboard.dismiss();
       setLoading(true);
-      console.log("e", data);
+      
       updateFormData(data);
       navigation.navigate("Etapa2");
     } catch (e) {
@@ -71,6 +71,7 @@ function Etapa1({ navigation }) {
           required: "Verifique se todos os campos estão preenchidos",
         }}
       />
+       {errors.nome && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
       <Input
         placeholderName={"Sobrenome"}
         style={styles.input}
@@ -80,6 +81,7 @@ function Etapa1({ navigation }) {
           required: "Verifique se todos os campos estão preenchidos",
         }}
       />
+       {errors.sobrenome && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
       <Input
         placeholderName={"Código de indicação (Opcional)"}
         keyboardType="numeric"

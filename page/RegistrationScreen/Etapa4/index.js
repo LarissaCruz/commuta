@@ -58,6 +58,7 @@ function Etapa4({ navigation }) {
           },
         }}
       />
+      {errors.email && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
        <Input
         name="senha"
         control={control}
@@ -68,7 +69,7 @@ function Etapa4({ navigation }) {
         placeholderName={"Senha"}
         iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
       />
-
+      {errors.senha && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}    
       <Input
         name="confirmSenha"
         control={control}
@@ -79,6 +80,7 @@ function Etapa4({ navigation }) {
         placeholderName={"Repetir senha"}
         iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
       />
+      {errors.confirmSenha && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
       <View
         style={{
           flex: 1,

@@ -17,6 +17,7 @@ const Etapa3 = ({ navigation }) => {
   const [selectedItemOrgao, setSelectedItemOrgao] = useState(null);
   const { formData, updateFormData } = useFormContext(); 
   const [loading, setLoading] = useState(false);
+  const [error, setErro] = useState(false)
 
   const handleItemPress = (item, setSelectedItem,setExpanded) => {
     setSelectedItem(item);
@@ -60,8 +61,8 @@ const Etapa3 = ({ navigation }) => {
         orgao:selectedItemOrgao,
       };
       try{
+        setErro(false)
         setLoading(true);
-        console.log("e", data);
         updateFormData(data);
         navigation.navigate("Etapa4");
       }
@@ -69,6 +70,8 @@ const Etapa3 = ({ navigation }) => {
         console.log("erro")
       }
       
+    }else {
+      setErro(true)
     }
    
   };
@@ -85,6 +88,7 @@ const Etapa3 = ({ navigation }) => {
           Agora nos informe qual seu destino de interesse
         </Text>
       </View>
+      {error && <Text style={styles.error}>Verifique se todos os campo estão preenchidos</Text>}
       <Input
         name="Estado"
         control={control}
@@ -99,6 +103,7 @@ const Etapa3 = ({ navigation }) => {
           />
         }
       ></Input>
+      
       <View
         style={{
           flexDirection: "row",

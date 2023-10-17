@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 8,
   },
+  error:{color:"red", fontSize:10}
 });
 
 export default styles;

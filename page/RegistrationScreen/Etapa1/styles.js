@@ -46,5 +46,6 @@ const styles = StyleSheet.create({
     gap: 8,
     alignItems: "center",
   },
+  error:{color:"red", fontSize:10}
 });
 export default styles;
