@@ -12,7 +12,10 @@ function Input({
   control, 
   rules,
   secureTextEntry,
-  keyboardType
+  keyboardType,
+  onChangeText,
+  valueText
+
 }) {
   const [isFocused, setIsFocused] = React.useState(false);
   return (
@@ -26,7 +29,7 @@ function Input({
     }) => (
       <>
         <TextInput
-          value={value}
+          value={valueText ? valueText : value}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           theme={{
@@ -51,7 +54,7 @@ function Input({
           placeholder={placeholderName}
           right={iconRight}
           left={iconLeft}
-          onChangeText={onChange}
+          onChangeText={ onChangeText ? onChangeText : onChange }
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
         />

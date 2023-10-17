@@ -1,12 +1,16 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Keyboard } from "react-native";
 import { List } from "react-native-paper";
 
-const AccordionItem = ({ expanded, onPress, title, id, children, style }) => {
+const AccordionItem = ({ expanded, onPress, title, id, children, style, setSelectedItem }) => {
   return (
     <List.Accordion
       expanded={expanded}
-      onPress={onPress}
+      onPress={() => {
+        Keyboard.dismiss();
+        setSelectedItem(null); // Limpa o selectedItem quando o acordeão é pressionado
+        onPress();
+      }}
       title={<Text style={{ color: "#808080" }}>{title}</Text>}
       id={id}
       style={{

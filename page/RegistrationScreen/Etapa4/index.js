@@ -1,12 +1,38 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React ,  {useState} from "react";
+import { View, Text, StyleSheet, TouchableOpacity , Keyboard} from "react-native";
 import { ProgressBar } from "react-native-paper";
 import Input from "../../../components/Input";
 import { TextInput } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
+import { useForm } from "react-hook-form";
+import { useFormContext } from "../../../context/FormContext";
 
 function Etapa4({ navigation }) {
+  const { formData, updateFormData } = useFormContext(); 
+  const [loading, setLoading] = useState(false);
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async ({ email, senha }) => {
+    const data = {
+      email,
+      senha
+    }
+    try {
+      Keyboard.dismiss();
+      setLoading(true);
+      updateFormData(data);
+      navigation.navigate("ConfirmEmail")
+    } catch (e) {
+      setLoading(false);
+      //ShowAlert("Erro", e.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.navbar}>
@@ -21,16 +47,38 @@ function Etapa4({ navigation }) {
           Estamos quase lá. Agora so falta os seus dados de acesso.
         </Text>
       </View>
-      <Input placeholderName={"Email"}></Input>
-      <Input
+      <Input placeholderName={"Email"}
+        name="email"
+        control={control}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+          pattern: {
+            value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/,
+            message: "email inválido",
+          },
+        }}
+      />
+       <Input
+        name="senha"
+        control={control}
+        secureTextEntry={true}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+        }}
         placeholderName={"Senha"}
         iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
-      ></Input>
+      />
 
       <Input
+        name="confirmSenha"
+        control={control}
+        secureTextEntry={true}
+        rules={{
+          required: "Verifique se todos os campos estão preenchidos",
+        }}
         placeholderName={"Repetir senha"}
         iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
-      ></Input>
+      />
       <View
         style={{
           flex: 1,
@@ -57,7 +105,7 @@ function Etapa4({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button]}
-            onPress={() => navigation.navigate("ConfirmEmail")}
+            onPress={handleSubmit(onSubmit)} 
           >
             <Text style={[styles.labelButton]}>Concluir</Text>
 

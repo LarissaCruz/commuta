@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity , Keyboard} from "react-native";
 import { List, ProgressBar, TextInput } from "react-native-paper";
 import Input from "../../../components/Input";
-import { Chip } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
+import { useForm } from "react-hook-form";
+import AccordionItem from "../../../components/AccordionItem";
+import { useFormContext } from "../../../context/FormContext";
 
 const Etapa3 = ({ navigation }) => {
-  const [expandedAccordion, setExpandedAccordion] = useState(null);
   const [estadoSelecionado, setEstadoSelecionado] = useState("");
-  const [colecaoEstados, setColecaoEstados] = useState(["Ba"]);
+  const [colecaoEstados, setColecaoEstados] = useState([]);
   const [cidadeSelecionada, setCidadeSelecionada] = useState("");
-  const [colecaoCidades, setColecaoCidades] = useState(["eunapolis"]);
+  const [colecaoCidades, setColecaoCidades] = useState([]);
+  const [expandedOrgao, setExpandedOrgao] = useState(false);
+  const [selectedItemOrgao, setSelectedItemOrgao] = useState(null);
+  const { formData, updateFormData } = useFormContext(); 
+  const [loading, setLoading] = useState(false);
 
-  const handleAccordionPress = (accordionId) => {
-    setExpandedAccordion(
-      expandedAccordion === accordionId ? null : accordionId
-    );
-  };
-
-  const isAccordionExpanded = (accordionId) => {
-    return expandedAccordion === accordionId;
+  const handleItemPress = (item, setSelectedItem,setExpanded) => {
+    setSelectedItem(item);
+    setExpanded(false); // Expande o acordeão quando um item é selecionado
   };
 
   const handleChangeEstado = (text) => {
@@ -45,6 +45,33 @@ const Etapa3 = ({ navigation }) => {
     setColecaoCidades([...colecaoCidades, cidadeSelecionada]);
     setCidadeSelecionada("");
   };
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+ 
+  const onSubmit = () => {
+
+    if (colecaoEstados.length > 0 && colecaoCidades.length > 0 && selectedItemOrgao!== null){
+      const data = {
+        colecaoEstados,
+        colecaoCidades,
+        orgao:selectedItemOrgao,
+      };
+      try{
+        setLoading(true);
+        console.log("e", data);
+        updateFormData(data);
+        navigation.navigate("Etapa4");
+      }
+      catch{
+        console.log("erro")
+      }
+      
+    }
+   
+  };
 
   return (
     <View style={styles.container}>
@@ -59,8 +86,10 @@ const Etapa3 = ({ navigation }) => {
         </Text>
       </View>
       <Input
+        name="Estado"
+        control={control}
         placeholderName={"Estado"}
-        value={estadoSelecionado}
+        valueText={estadoSelecionado}
         onChangeText={handleChangeEstado}
         iconRight={
           <TextInput.Icon
@@ -78,7 +107,7 @@ const Etapa3 = ({ navigation }) => {
           flexWrap: "wrap",
         }}
       >
-        {colecaoEstados &&
+        {colecaoEstados.length > 0 &&
           colecaoEstados?.map((item, index) => {
             return (
               <View style={[styles.chip]} key={index}>
@@ -95,7 +124,10 @@ const Etapa3 = ({ navigation }) => {
           })}
       </View>
       <Input
-        value={cidadeSelecionada}
+          name="Cidade"
+          control={control}
+        
+        valueText={cidadeSelecionada}
         onChangeText={handleChangeCidade}
         placeholderName={"Cidade"}
         iconRight={
@@ -107,7 +139,7 @@ const Etapa3 = ({ navigation }) => {
         }
       ></Input>
       <View style={{ flexDirection: "row", marginBottom: 10, gap: 8 }}>
-        {colecaoCidades &&
+        {colecaoCidades.length > 0  &&
           colecaoCidades?.map((item, index) => {
             return (
               <View style={styles.chip} key={index}>
@@ -123,43 +155,24 @@ const Etapa3 = ({ navigation }) => {
             );
           })}
       </View>
-      <List.Accordion
-        expanded={isAccordionExpanded("1")}
-        onPress={() => handleAccordionPress("1")}
-        title={<Text style={{ color: "#808080" }}>Órgão institucional </Text>}
+
+      <AccordionItem
+        control={control}
+        expanded={expandedOrgao}
+        onPress={() => setExpandedOrgao(!expandedOrgao)}
+        title={selectedItemOrgao ||"Órgão institucionalea"}
+        setSelectedItem={setSelectedItemOrgao} 
         id="1"
-        style={{
-          borderColor: "#808080",
-          borderWidth: 1,
-          paddingVertical: 0,
-          borderRadius: 10,
-          backgroundColor: "white",
-          marginBottom: 16,
-          height: 48,
-          color: "#808080",
-        }}
       >
-        <View
-          style={{
-            backgroundColor: "white",
-            shadowColor: "#000000",
-            shadowOpacity: 0.8,
-            shadowRadius: 2,
-            borderRadius: 10,
-            borderTopRightRadius: 10,
-            shadowOffset: {
-              height: 1,
-              width: 1,
-            },
-            elevation: 5,
-          }}
-        >
-          <List.Item title="Item 1" />
-          <List.Item title="Item 1" />
-          <List.Item title="Item 1" />
-          <List.Item title="Item 1" />
+        <View>
+        <List.Item title="Item 1" onPress={() => handleItemPress("Item 1",setSelectedItemOrgao, setExpandedOrgao)} />
+        <List.Item title="Item 2" onPress={() => handleItemPress("Item 2",setSelectedItemOrgao, setExpandedOrgao)} />
+        <List.Item title="Item 3" onPress={() => handleItemPress("Item 3",setSelectedItemOrgao, setExpandedOrgao)} />
+        <List.Item title="Item 4" onPress={() => handleItemPress("Item 4",setSelectedItemOrgao, setExpandedOrgao)} />
         </View>
-      </List.Accordion>
+      </AccordionItem>
+
+     
       <View
         style={{
           flex: 1,
@@ -185,7 +198,7 @@ const Etapa3 = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button]}
-            onPress={() => navigation.navigate("Etapa4")}
+            onPress={()=>onSubmit()} 
           >
             <Text style={[styles.labelButton]}>Proximo</Text>
           </TouchableOpacity>
