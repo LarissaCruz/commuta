@@ -8,7 +8,7 @@ const AccordionItem = ({ expanded, onPress, title, id, children, style, setSelec
       expanded={expanded}
       onPress={() => {
         Keyboard.dismiss();
-        setSelectedItem(null); // Limpa o selectedItem quando o acordeão é pressionado
+        setSelectedItem(null); 
         onPress();
       }}
       title={<Text style={{ color: "#808080" }}>{title}</Text>}

@@ -4,7 +4,7 @@ import { List, ProgressBar } from "react-native-paper";
 import { useForm } from "react-hook-form";
 import { useFormContext } from "../../../context/FormContext";
 import Input from "../../../components/Input";
-import AccordionItem from "../../../components/AccordionItem"; // Importando o componente AccordionItem
+import AccordionItem from "../../../components/AccordionItem";
 import styles from "./styles";
 
 function Etapa2({ navigation }) {
@@ -19,7 +19,7 @@ function Etapa2({ navigation }) {
 
   const handleItemPress = (item, setSelectedItem,setExpanded) => {
     setSelectedItem(item);
-    setExpanded(false); // Expande o acordeão quando um item é selecionado
+    setExpanded(false);
   };
   const {
     handleSubmit,
@@ -99,7 +99,7 @@ function Etapa2({ navigation }) {
       title={selectedItemSubArea || "Sub-área (Opcional)"}
       id="2"
       setSelectedItem={setSelectedItemSubArea} 
-      control={control}// Passa a função setSelectedItem para o AccordionItem
+      control={control}// 
     >
       <View>
         <List.Item title="Item 1" onPress={() => handleItemPress("Item 1",setSelectedItemSubArea,setExpandedSubArea)} />
@@ -154,7 +154,7 @@ function Etapa2({ navigation }) {
               },
               elevation: 5,
               marginTop: 10,
-              zIndex: 2, // Ajuste o zIndex aqui
+              zIndex: 2,
             }}>
               <List.Item title="BA" onPress={() => handleItemPress("BA",setSelectedItemState,setExpandedState)} />
               <List.Item title="ES" onPress={() => handleItemPress("ES",setSelectedItemState,setExpandedState)} />

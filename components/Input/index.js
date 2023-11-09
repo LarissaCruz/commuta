@@ -35,8 +35,8 @@ function Input({
           theme={{
             colors: {
               outline: "#808080",
-              primary: isFocused ? "#4B3EFF" : "#808080", // Cor da borda quando focado e não focado
-              underlineColor: "transparent", // Remove a linha de baixo
+              primary: isFocused ? "#4B3EFF" : "#808080", 
+              underlineColor: "transparent", 
             },
             fonts: {
               regular: {
@@ -48,7 +48,7 @@ function Input({
           placeholderTextColor="#808080"
           style={[
             styles.input,
-            stylesInput && stylesInput, // Adiciona os estilos extras (se existirem)
+            stylesInput && stylesInput,
           ]}
           mode="outlined"
           placeholder={placeholderName}

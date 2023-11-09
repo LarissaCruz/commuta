@@ -18,7 +18,7 @@ export default function AuthRouter() {
   return (
     <Stack.Navigator s screenOptions={{
       headerStyle: {
-        backgroundColor: '#fcfcfc', // Defina a cor desejada aqui
+        backgroundColor: '#fcfcfc', 
       },
     }}>
       <Stack.Screen

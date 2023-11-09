@@ -87,8 +87,8 @@ function SearchScreen() {
         theme={{
           colors: {
             outline: "#808080",
-            primary: isFocused ? "#4B3EFF" : "#808080", // Cor da borda quando focado e não focado
-            underlineColor: "transparent", // Remove a linha de baixo
+            primary: isFocused ? "#4B3EFF" : "#808080", 
+            underlineColor: "transparent", 
           },
 
           roundness: 10,

@@ -21,7 +21,7 @@ const Etapa3 = ({ navigation }) => {
 
   const handleItemPress = (item, setSelectedItem,setExpanded) => {
     setSelectedItem(item);
-    setExpanded(false); // Expande o acordeão quando um item é selecionado
+    setExpanded(false); 
   };
 
   const handleChangeEstado = (text) => {

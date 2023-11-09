@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const PreferencesScreen = ({ navigation }) => {
   const handleManageInterests = () => {
-    // Implemente a lógica para gerenciar interesses aqui
+  
   };
 
   return (

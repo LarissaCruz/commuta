@@ -1,12 +1,14 @@
 import { useFonts } from "expo-font";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-
 import AppTabs from "./router/BottomTabs";
 import AuthRouter from "./router/AuthRouter";
 import { FormProvider } from "./context/FormContext";
+import { PlanoProvider } from "./context/PlanoContext";
+
 export default function App() {
   let [fontsLoaded] = useFonts({
+    MontserratBlack: require("./assets/fontes/Montserrat-Black.ttf"),
     MontserratBold: require("./assets/fontes/Montserrat-Bold.ttf"),
     MontserratMedium: require("./assets/fontes/Montserrat-Medium.ttf"),
     MontserratRegular: require("./assets/fontes/Montserrat-Regular.ttf"),
@@ -21,7 +23,9 @@ export default function App() {
           translucent={true} // Tornar a barra de status transparente
         />
         <FormProvider>
-          <AuthRouter />
+         <PlanoProvider>
+            <AuthRouter />
+          </PlanoProvider>
         </FormProvider>
       </NavigationContainer>
     );
