@@ -73,11 +73,11 @@ const PlanoAnualModal = ({ visible, onClose, navigation, setVisible }) => {
         animationType="slide"
         transparent={true}
         visible={isVisibleBottomSheet}
-        onRequestClose={onClose}
+        onRequestClose={onCloseModal}
       >
         <View style={{ flex: 1, }}>
           <StatusBar barStyle="light-content" backgroundColor="rgba(26, 26, 26, 0.5)" />
-          <TouchableOpacity style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: '#1A1A1A', opacity: 0.5}} />
+          <TouchableOpacity style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: '#1A1A1A', opacity: 0.5}} onPress={onCloseModal} />
           <BottomSheetComponent  onCloseModal={onCloseModal}/>
         </View>
       </Modal>

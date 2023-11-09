@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
     backgroundColor: "white",
     borderRadius: 14,
-    shadowColor: "#000000",
+    shadowColor: "#00000047",
     shadowOpacity: 0.1,
     shadowRadius: 8,
     shadowOffset: {

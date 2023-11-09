@@ -19,7 +19,7 @@ const INITIAL_HEIGHT = 480;
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 50;
 
-const BottomSheetComponent =  React.forwardRef(({ onCloseModal }, reference) => { 
+const BottomSheetComponent =  React.forwardRef(({}, reference) => { 
   const {
     handleSubmit,
     control,
@@ -92,7 +92,7 @@ const BottomSheetComponent =  React.forwardRef(({ onCloseModal }, reference) => 
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }} ref={reference}>
-      <TouchableOpacity  onPress={onCloseModal} style={styles.container}>
+      <View style={styles.container}>
         <GestureDetector gesture={gesture} ref={ref}>
           <Animated.View style={[styles.bottomSheetContainer, rBottomSheetStyle]}>
             <View style={styles.line} />
@@ -179,7 +179,7 @@ const BottomSheetComponent =  React.forwardRef(({ onCloseModal }, reference) => 
             
           </Animated.View>
         </GestureDetector>
-      </TouchableOpacity>
+      </View>
     </GestureHandlerRootView>
   );
 });

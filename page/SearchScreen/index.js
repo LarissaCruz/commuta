@@ -84,6 +84,11 @@ function SearchScreen() {
   const [selectedItemArea, setSelectedItemArea] = useState(null);
   const [selectedItemSubArea, setSelectedItemSubArea] = useState(null);
   const [selectedItemState, setSelectedItemState] = useState(null);
+
+  const handleItemPress = (item, setSelectedItem,setExpanded) => {
+    setSelectedItem(item);
+    setExpanded(false);
+  };
   const {
     handleSubmit,
     control,
@@ -104,6 +109,7 @@ function SearchScreen() {
   const lastSwipedDirection = (swipeDirection) => {
     setSwipeDirection(swipeDirection);
   };
+  
 
   const onSubmit = async ({ cargo, orgao, cidade }) => {
     if (selectedItemArea!==null && selectedItemSubArea!==null && selectedItemState!== null){
