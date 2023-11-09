@@ -55,6 +55,7 @@ function Etapa2({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View>
       <View style={styles.navbar}>
         <Text style={styles.titulo}>Cadastro</Text>
       </View>
@@ -174,8 +175,9 @@ function Etapa2({ navigation }) {
           required: "Verifique se todos os campos estão preenchidos",
         }}
       />
+      </View>
       {errors.orgao && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
-      <View style={{ flex: 1, justifyContent: "flex-end", paddingBottom: 15 }}>
+     
         <View style={{ justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 10 }}>
           <TouchableOpacity
             style={[styles.button, { backgroundColor: "white" }]}
@@ -190,7 +192,7 @@ function Etapa2({ navigation }) {
             <Text style={[styles.labelButton]}>Proximo</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      
     </View>
   );
 }

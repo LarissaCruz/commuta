@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     backgroundColor: "#FCFCFC",
+    justifyContent:"space-between"
   },
   navbar: {
     paddingTop: 40,
