@@ -184,10 +184,10 @@ function Etapa2({ navigation }) {
             <Text style={[styles.labelButton, { color: "#4B3EFF" }]}>Anterior</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button]}
             onPress={() => navigation.navigate("Etapa3")}
           >
-            <Text style={styles.labelButton} onPress={handleSubmit(onSubmit)} >Próximo</Text>
+            <Text style={[styles.labelButton]}>Proximo</Text>
           </TouchableOpacity>
         </View>
       </View>

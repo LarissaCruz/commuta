@@ -9,8 +9,8 @@ function ContactsScreen({ navigation }) {
       <CardHeader />
       <View style={{paddingHorizontal: 16}}>
         <CardContacts navigation={navigation} />
-        <CardContacts />
-        <CardContacts />
+        <CardContacts navigation={navigation} />
+        <CardContacts navigation={navigation}/>
       </View>
     </View>
   );

@@ -38,13 +38,19 @@ const Etapa3 = ({ navigation }) => {
   };
 
   const handleChangeColecaoEstado = () => {
-    setColecaoEstados([...colecaoEstados, estadoSelecionado]);
-    setEstadoSelecionado("");
+    if(estadoSelecionado!==""){
+      setColecaoEstados([...colecaoEstados, estadoSelecionado]);
+      setEstadoSelecionado("");
+    }
+   
   };
 
   const handleChangeColecaoCidade = () => {
-    setColecaoCidades([...colecaoCidades, cidadeSelecionada]);
-    setCidadeSelecionada("");
+    if(cidadeSelecionada!==""){
+      setColecaoCidades([...colecaoCidades, cidadeSelecionada]);
+      setCidadeSelecionada("");
+    }
+  
   };
   const {
     handleSubmit,
@@ -202,10 +208,12 @@ const Etapa3 = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button]}
-            onPress={()=>onSubmit()} 
+            style={[styles.button, ]}
+            onPress={() => navigation.navigate("Etapa4")}
           >
-            <Text style={[styles.labelButton]}>Proximo</Text>
+            <Text style={[styles.labelButton, ]}>
+              Proximo
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

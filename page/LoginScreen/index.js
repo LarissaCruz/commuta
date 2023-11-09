@@ -9,7 +9,7 @@ import Input from "../../components/Input";
 
 function LoginScreen({ navigation }) {
   const [loading, setLoading] = useState(false);
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const {
     handleSubmit,
     control,
@@ -56,10 +56,16 @@ function LoginScreen({ navigation }) {
       <Input
         placeholderName="Senha"
         iconLeft={<TextInput.Icon icon="lock" color={"#333"} />}
-        iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
+        iconRight={
+          <TextInput.Icon
+            icon={isPasswordVisible ? "eye-off" : "eye"}
+            color={"#4B3EFF"}
+            onPress={() => setIsPasswordVisible((prev) => !prev)}
+          />
+        }
         name="senha"
         control={control}
-        secureTextEntry={true}
+        secureTextEntry={!isPasswordVisible}
         rules={{
           required: "Verifique se todos os campos estão preenchidos",
         }}

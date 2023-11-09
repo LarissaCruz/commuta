@@ -13,8 +13,8 @@ function HomeScreen({ navigation }) {
       <CardHeader></CardHeader>
       <View style={{ paddingHorizontal: 16 }}>
         <CardNews navigation={navigation} />
-        <CardNews />
-        <CardNews />
+        <CardNews navigation={navigation}/>
+        <CardNews navigation={navigation}/>
       </View>
     </View>
   );

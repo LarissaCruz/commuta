@@ -21,7 +21,6 @@ const PlanoAnualModal = ({ visible, onClose, navigation, setVisible }) => {
   };
 
   const onCloseModal =() => {
-  console.log("teste2")
    // setVisible(false)
     setIsVisibleBottomSheet(false)
   }

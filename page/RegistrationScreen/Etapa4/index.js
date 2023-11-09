@@ -11,6 +11,7 @@ import { useFormContext } from "../../../context/FormContext";
 function Etapa4({ navigation }) {
   const { formData, updateFormData } = useFormContext(); 
   const [loading, setLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const {
     handleSubmit,
     control,
@@ -62,23 +63,35 @@ function Etapa4({ navigation }) {
        <Input
         name="senha"
         control={control}
-        secureTextEntry={true}
+        secureTextEntry={!isPasswordVisible}
         rules={{
           required: "Verifique se todos os campos estão preenchidos",
         }}
         placeholderName={"Senha"}
-        iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
+        iconRight={
+          <TextInput.Icon
+            icon={isPasswordVisible ? "eye-off" : "eye"}
+            color={"#4B3EFF"}
+            onPress={() => setIsPasswordVisible((prev) => !prev)}
+          />
+        }
       />
       {errors.senha && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}    
       <Input
         name="confirmSenha"
         control={control}
-        secureTextEntry={true}
+        secureTextEntry={!isPasswordVisible}
         rules={{
           required: "Verifique se todos os campos estão preenchidos",
         }}
         placeholderName={"Repetir senha"}
-        iconRight={<TextInput.Icon icon="eye" color={"#4B3EFF"} />}
+        iconRight={
+        <TextInput.Icon
+          icon={isPasswordVisible ? "eye-off" : "eye"}
+          color={"#4B3EFF"}
+          onPress={() => setIsPasswordVisible((prev) => !prev)}
+        />
+      }
       />
       {errors.confirmSenha && <Text style={styles.error}>Esse campo é obrigatório esta preenchido</Text>}
       <View

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,8 +15,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 
-function SearchResultCard({ data, item, removeCard, swipedDirection }) {
+function SearchResultCard({ data, item, removeCard, onSwipe }) {
   const window = useWindowDimensions();
+  const [cardDismissed, setCardDismissed] = useState(false);
+  const [ignoredCards, setIgnoredCards] = useState([]);
+  const [likedCards, setLikedCards] = useState([]);
+
   const xPosition = React.useRef(new Animated.Value(0)).current;
   let cardOpacity = React.useRef(new Animated.Value(1)).current;
   let rotateCard = xPosition.interpolate({
@@ -38,7 +42,7 @@ function SearchResultCard({ data, item, removeCard, swipedDirection }) {
           gestureState.dx < window.width - 150 &&
           gestureState.dx > -window.width + 150
         ) {
-          swipedDirection("--");
+          onSwipe("--");
           Animated.spring(xPosition, {
             toValue: 0,
             speed: 5,
@@ -58,7 +62,7 @@ function SearchResultCard({ data, item, removeCard, swipedDirection }) {
               useNativeDriver: false,
             }),
           ]).start(() => {
-            swipedDirection("Direita");
+            onSwipe("Direita");
             removeCard();
           });
         } else if (gestureState.dx < -window.width + 150) {
@@ -74,13 +78,14 @@ function SearchResultCard({ data, item, removeCard, swipedDirection }) {
               useNativeDriver: false,
             }),
           ]).start(() => {
-            swipedDirection("Esquerda");
+            onSwipe("Esquerda");
             removeCard();
           });
         }
       },
     })
   ).current;
+
   return (
     <Animated.View
       {...panResponder.panHandlers}
@@ -113,14 +118,39 @@ function SearchResultCard({ data, item, removeCard, swipedDirection }) {
       >
         <TouchableOpacity
           style={[styles.button, styles.outline]}
-          onPress={null}
+          onPress={() => {
+            setCardDismissed(true);
+            setIgnoredCards([...ignoredCards, item]);
+            Animated.timing(xPosition, {
+              toValue: -window.width,
+              duration: 200,
+              useNativeDriver: false,
+            }).start(() => {
+              onSwipe("Esquerda");
+              removeCard();
+            });
+          }}
         >
-          <AntDesign name="dislike1" size={20} color="#333333" />
+         <MaterialIcons name="thumb-down" size={20} color="#333333" />
           <Text style={[styles.labelbutton, { color: "#333333" }]}>
             Ignorar
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={null}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            setCardDismissed(true);
+            setLikedCards([...likedCards, item]);
+            Animated.timing(xPosition, {
+              toValue: window.width,
+              duration: 200,
+              useNativeDriver: false,
+            }).start(() => {
+              onSwipe("Direita");
+              removeCard();
+            });
+          }}
+        >
           <Text style={styles.labelbutton}>Gostei</Text>
           <AntDesign name="like1" size={20} color="white" />
         </TouchableOpacity>
@@ -135,7 +165,8 @@ const styles = StyleSheet.create({
     marginTop: 2,
     padding: 12,
     position: "absolute",
-
+    top: 20,
+    zIndex: 10,
     backgroundColor: "white",
     borderRadius: 14,
     shadowColor: "#000000",

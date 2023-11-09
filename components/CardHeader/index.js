@@ -5,9 +5,9 @@ import { List } from "react-native-paper";
 import { EvilIcons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 
-function CardHeader() {
+function CardHeader({ styleHeader}) {
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, styleHeader]}>
       <View style={{ alignItems: "flex-end", paddingEnd: 10 }}>
         <Fontisto name="close-a" size={7} color="black" />
       </View>

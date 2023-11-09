@@ -2,10 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CardHeader from "../../components/CardHeader";
 import { AntDesign } from '@expo/vector-icons'; 
+import PlanoAnualModal from "../../components/PlanoAnualModal";
 
 function Configuracao({ navigation }) {
+  const [visible, setVisible] = React.useState(false)
   return (
     <View style={styles.container}>
+      <PlanoAnualModal visible={visible} setVisible={setVisible}></PlanoAnualModal>
       <CardHeader />
       <View style={{paddingHorizontal:24}}>
         <Text style={[styles.titulo, { marginTop: 10 }]}>
@@ -61,7 +64,7 @@ function Configuracao({ navigation }) {
         </View>
         
       </View> 
-      <TouchableOpacity style={styles.button} onPress={null}>
+      <TouchableOpacity style={styles.button} onPress={()=>setVisible(true)}>
             <AntDesign name="plus" size={20} color="white" />
             <Text style={styles.labelbutton}>Adicionar Interesse</Text>
          </TouchableOpacity>

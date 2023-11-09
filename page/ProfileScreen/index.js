@@ -13,15 +13,17 @@ import { Entypo } from "@expo/vector-icons";
 import CustomInput from "../../components/CustomInput";
 import { AntDesign } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
+import PlanoAnualModal from "../../components/PlanoAnualModal";
 
 function ProfileScreen({ navigation }) {
   const [menuVisible, setMenuVisible] = useState(false);
-
+  const [visible, setVisible] = React.useState(false)
   const openMenu = () => setMenuVisible(true);
   const closeMenu = () => setMenuVisible(false);
 
   return (
     <ScrollView style={styles.container}>
+      <PlanoAnualModal visible={visible} setVisible={setVisible}></PlanoAnualModal>
       <Provider>
         <View
           style={{
@@ -43,7 +45,7 @@ function ProfileScreen({ navigation }) {
             <Text style={[styles.titulo, { marginTop: 10 }]}>
               Lucas Pereira Santos
             </Text>
-            <TouchableOpacity style={styles.button} onPress={null}>
+            <TouchableOpacity style={styles.button} onPress={()=> setVisible(true)}>
               <Text style={styles.labelbutton}>Seja Premium</Text>
               <Entypo name="star" size={18} color="white" />
             </TouchableOpacity>
